@@ -1,0 +1,19 @@
+language: php
+
+php:
+    - 7.0
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_script:
+  - travis_retry composer self-update
+  - travis_retry composer install --no-interaction --prefer-source
+
+script:
+  - vendor/bin/phpcs --standard=PSR2 src/ --runtime-set ignore_warnings_on_exit 1
+  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+

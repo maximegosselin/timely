@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Timely" default="dist">
+    <target name="prebuild">
+        <delete dir="./build"/>
+        <mkdir dir="./build"/>
+    </target>
+
+    <target name="dist" depends="prebuild">
+        <echo msg="Checking code style..."/>
+        <exec command="phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 --report=xml --report-file=build/phpcs-report.xml src test" dir="./" logoutput="true"/>
+
+        <echo msg="Running tests..."/>
+        <exec command="phpunit --coverage-text" dir="./" logoutput="true"/>
+    </target>
+</project>
