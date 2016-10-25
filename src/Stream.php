@@ -48,7 +48,8 @@ class Stream implements StreamInterface
 
     public function find(TimePointInterface $asAt, TimePointInterface $asOf)
     {
-        $query = $this->pdo->prepare('SELECT * FROM records WHERE TT <= :tt AND VT <= :vt ORDER BY VT DESC, TT DESC LIMIT 1');
+        $sql = 'SELECT * FROM records WHERE TT <= :tt AND VT <= :vt ORDER BY VT DESC, TT DESC LIMIT 1';
+        $query = $this->pdo->prepare($sql);
         $query->execute([
             ':tt' => $asAt->toString(),
             ':vt' => $asOf->toString(),
