@@ -5,9 +5,8 @@ declare(strict_types = 1);
 namespace MaximeGosselin\Timely;
 
 use Generator;
-use MaximeGosselin\Serializer\SerializableInterface;
 
-interface StreamInterface extends SerializableInterface
+interface StreamInterface
 {
     public function find(TimePointInterface $asAt, TimePointInterface $asOf);
 

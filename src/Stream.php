@@ -5,11 +5,13 @@ declare(strict_types = 1);
 namespace MaximeGosselin\Timely;
 
 use Generator;
+use MaximeGosselin\Serializer\DeserializableInterface;
+use MaximeGosselin\Serializer\SerializableInterface;
 use MaximeGosselin\Serializer\Serializer;
 use PDO;
 use PDOException;
 
-class Stream implements StreamInterface
+class Stream implements StreamInterface, SerializableInterface, DeserializableInterface
 {
     /**
      * @var array
@@ -39,10 +41,8 @@ class Stream implements StreamInterface
     {
         $instance = new static();
         foreach ($data as $element) {
-            $element = Serializer::deserialize($element);
             $instance->appendToHistory($element);
         }
-
         return $instance;
     }
 

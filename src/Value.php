@@ -4,9 +4,11 @@ declare(strict_types = 1);
 
 namespace MaximeGosselin\Timely;
 
+use MaximeGosselin\Serializer\DeserializableInterface;
+use MaximeGosselin\Serializer\SerializableInterface;
 use MaximeGosselin\Serializer\Serializer;
 
-class Value implements ValueInterface
+class Value implements ValueInterface, SerializableInterface, DeserializableInterface
 {
     /**
      * @var mixed
@@ -39,7 +41,7 @@ class Value implements ValueInterface
 
     public static function deserialize(array $data):ValueInterface
     {
-        $value = Serializer::deserialize($data['value']);
+        $value = $data['value'];
         $vt = TimePoint::fromString($data['vt']);
         $tt = TimePoint::fromString($data['tt']);
 
@@ -64,9 +66,6 @@ class Value implements ValueInterface
         return $this->tt;
     }
 
-    /**
-     * @throws SerializationException
-     */
     public function serialize():array
     {
         return [

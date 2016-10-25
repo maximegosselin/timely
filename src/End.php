@@ -4,7 +4,10 @@ declare(strict_types = 1);
 
 namespace MaximeGosselin\Timely;
 
-class End implements EndInterface
+use MaximeGosselin\Serializer\DeserializableInterface;
+use MaximeGosselin\Serializer\SerializableInterface;
+
+class End implements EndInterface, SerializableInterface, DeserializableInterface
 {
     /**
      * @var TimePointInterface

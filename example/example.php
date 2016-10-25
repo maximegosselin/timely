@@ -1,4 +1,5 @@
 <?php
+use MaximeGosselin\Serializer\Engine;
 use MaximeGosselin\Timely\Stream;
 use MaximeGosselin\Timely\TimePoint;
 use MaximeGosselin\Timely\Value;
@@ -19,7 +20,8 @@ $stream->end(TimePoint::fromString('12:00'), TimePoint::fromString('14:00'));
 $record = $stream->find(TimePoint::fromString('13:05'), TimePoint::fromString('11:30'));
 
 if ($record instanceOf Value) {
-    echo $record->getValue();
+    $serialization = (new Engine())->serialize($record);
+    echo json_encode($serialization, JSON_PRETTY_PRINT);
 } else {
     echo 'Nothing found.';
 }

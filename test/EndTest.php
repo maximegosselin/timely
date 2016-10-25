@@ -3,7 +3,6 @@ declare(strict_types = 1);
 
 namespace MaximeGosselin\Timely\Test;
 
-use MaximeGosselin\Serializer\Serializer;
 use MaximeGosselin\Timely\End;
 use MaximeGosselin\Timely\TimePoint;
 use PHPUnit_Framework_TestCase;

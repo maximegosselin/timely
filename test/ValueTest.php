@@ -28,16 +28,14 @@ class ValueTest extends PHPUnit_Framework_TestCase
         $ttString = '2002-02-02T02:02:02.123456-05:00';
         $vt = TimePoint::fromString($vtString);
         $tt = TimePoint::fromString($ttString);
-        $value = 123;
-        $v = Value::create($value, $vt, $tt);
 
-        $serialization = $v->serialize();
+        $value = Value::create(123, $vt, $tt);
 
         $this->assertArraySubset([
             'tt' => $ttString,
             'vt' => $vtString,
             'value' => 123
-        ], $serialization);
+        ], $value->serialize());
     }
 
     public function testDeserialize()
@@ -47,7 +45,7 @@ class ValueTest extends PHPUnit_Framework_TestCase
         $vt = TimePoint::fromString($vtString);
         $tt = TimePoint::fromString($ttString);
         $serialization = [
-            'value' => ['type' => 'integer', 'payload' => 123],
+            'value' => 123,
             'tt' => $ttString,
             'vt' => $vtString
         ];
