@@ -42,6 +42,12 @@ $record = $stream->find(TimePoint::fromString('10:05'), TimePoint::fromString('0
 echo $record->getValue(); /* 10 */
 ```
 
+## Tests
+
+```
+$ vendor/bin/phpunit
+```
+
 ## License
 
 The MIT License (MIT). Please see [LICENSE](LICENSE) for more information.
