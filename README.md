@@ -8,10 +8,12 @@
 
 For an introduction to bitemporal data, read [this article](http://martinfowler.com/eaaDev/timeNarrative.html).
 
+
 ## System Requirements
 
-- PHP 7
+- PHP 7.0 or later
 - PDO_SQLite extension for in-memory SQL queries
+
 
 ## Install
 
@@ -20,6 +22,9 @@ Install *Timely* using Composer.
 ```
 $ composer require maximegosselin/timely
 ```
+
+*Timely* is registered under the `MaximeGosselin\Timely` namespace.
+
 
 ## Usage
 
@@ -42,11 +47,14 @@ $record = $stream->find(TimePoint::fromString('10:05'), TimePoint::fromString('0
 echo $record->getValue(); /* 10 */
 ```
 
+
 ## Tests
 
+Run the following command from the project folder.
 ```
 $ vendor/bin/phpunit
 ```
+
 
 ## License
 
