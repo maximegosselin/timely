@@ -8,12 +8,12 @@ use MaximeGosselin\Serializer\DeserializableInterface;
 use MaximeGosselin\Serializer\SerializableInterface;
 use MaximeGosselin\Serializer\Serializer;
 
-class Value implements ValueInterface, SerializableInterface, DeserializableInterface
+class State implements StateInterface, SerializableInterface, DeserializableInterface
 {
     /**
      * @var mixed
      */
-    private $value;
+    private $state;
 
     /**
      * @var TimePointInterface
@@ -29,31 +29,31 @@ class Value implements ValueInterface, SerializableInterface, DeserializableInte
     {
     }
 
-    public static function create($value, TimePointInterface $vt, TimePointInterface $tt):ValueInterface
+    public static function create($state, TimePointInterface $vt, TimePointInterface $tt):StateInterface
     {
         $instance = new static();
-        $instance->value = $value;
+        $instance->state = $state;
         $instance->vt = $vt;
         $instance->tt = $tt;
 
         return $instance;
     }
 
-    public static function deserialize(array $data):ValueInterface
+    public static function deserialize(array $data):StateInterface
     {
-        $value = $data['value'];
+        $state = $data['state'];
         $vt = TimePoint::fromString($data['vt']);
         $tt = TimePoint::fromString($data['tt']);
 
-        return self::create($value, $vt, $tt);
+        return self::create($state, $vt, $tt);
     }
 
     /**
      * @return mixed
      */
-    public function getValue()
+    public function getState()
     {
-        return $this->value;
+        return $this->state;
     }
 
     public function getValidTime():TimePointInterface
@@ -71,7 +71,7 @@ class Value implements ValueInterface, SerializableInterface, DeserializableInte
         return [
             'tt' => $this->tt->toString(),
             'vt' => $this->vt->toString(),
-            'value' => $this->value
+            'state' => $this->state
         ];
     }
 }

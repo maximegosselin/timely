@@ -1,8 +1,8 @@
 <?php
 use MaximeGosselin\Serializer\Engine;
+use MaximeGosselin\Timely\State;
 use MaximeGosselin\Timely\Stream;
 use MaximeGosselin\Timely\TimePoint;
-use MaximeGosselin\Timely\Value;
 
 require '../vendor/autoload.php';
 
@@ -19,7 +19,7 @@ $stream->end(TimePoint::fromString('12:00'), TimePoint::fromString('14:00'));
 
 $record = $stream->find(TimePoint::fromString('13:05'), TimePoint::fromString('11:30'));
 
-if ($record instanceOf Value) {
+if ($record instanceOf State) {
     $serialization = (new Engine())->serialize($record);
     echo json_encode($serialization, JSON_PRETTY_PRINT);
 } else {

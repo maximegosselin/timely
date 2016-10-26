@@ -13,7 +13,7 @@ interface StreamInterface
     /**
      * @throws TransactionTimeException If the transaction time comes before the last transaction
      */
-    public function update($value, TimePointInterface $asOf, TimePointInterface $asAt = null);
+    public function update($state, TimePointInterface $asOf, TimePointInterface $asAt = null);
 
     /**
      * @throws TransactionTimeException If the stream has already ended

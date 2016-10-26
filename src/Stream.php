@@ -66,10 +66,10 @@ class Stream implements StreamInterface, SerializableInterface, DeserializableIn
         return false;
     }
 
-    public function update($value, TimePointInterface $asOf, TimePointInterface $asAt = null)
+    public function update($state, TimePointInterface $asOf, TimePointInterface $asAt = null)
     {
         $asAt = $asAt ?? TimePoint::now();
-        $element = Value::create($value, $asOf, $asAt);
+        $element = State::create($state, $asOf, $asAt);
         $this->appendToHistory($element);
     }
 

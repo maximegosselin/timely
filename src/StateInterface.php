@@ -4,15 +4,15 @@ declare(strict_types = 1);
 
 namespace MaximeGosselin\Timely;
 
-interface ValueInterface extends BitemporalInterface
+interface StateInterface extends BitemporalInterface
 {
     /**
      * Factory method.
      */
-    public static function create($value, TimePointInterface $vt, TimePointInterface $tt):ValueInterface;
+    public static function create($state, TimePointInterface $vt, TimePointInterface $tt):StateInterface;
 
     /**
      * @return mixed
      */
-    public function getValue();
+    public function getState();
 }
