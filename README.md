@@ -26,25 +26,37 @@ $ composer require maximegosselin/timely
 *Timely* is registered under the `MaximeGosselin\Timely` namespace.
 
 
-## Usage
+## Basic usage
 
-Declare a bitemporal stream:
+Complete documentation can be found [here](docs/USAGE.md).
+
+Initialize a bitemporal stream:
 ```php
 $stream = new Stream();
 ```
 
 Set values over time:
 ```php
-$stream->update(10, TimePoint::fromString('07:00'), TimePoint::fromString('08:00'));
-$stream->update(8, TimePoint::fromString('09:30'), TimePoint::fromString('10:00'));
-$stream->end(TimePoint::fromString('11:00'), TimePoint::fromString('12:00'));
+$asOf = TimePoint::fromString('07:00');
+$asAt = TimePoint::fromString('08:00');
+$stream->update(10, $asOf, $asAt);
+ 
+$asOf = TimePoint::fromString('09:30');
+$asAt = TimePoint::fromString('10:00');
+$stream->update(8, $asOf, $asAt);
+ 
+$asOf = TimePoint::fromString('11:00');
+$asAt = TimePoint::fromString('12:00');
+$stream->end($asOf, $asAt);
 ```
 
 Search with transaction time (*as at*) and valid time (*as of*):
 ```php
-$record = $stream->find(TimePoint::fromString('10:05'), TimePoint::fromString('07:25'));
-
-echo $record->getValue(); /* 10 */
+$asAt = TimePoint::fromString('10:05');
+$asOf = TimePoint::fromString('07:25');
+$record = $stream->find($asAt, $asOf);
+ 
+echo $record->getValue();  // outputs 10
 ```
 
 
