@@ -28,7 +28,7 @@ class TimePoint implements TimePointInterface
         $microtime = sprintf('%.6F', microtime(true));
         $tz = new DateTimeZone('UTC');
 
-        return new static(DateTime::createFromFormat('U.u', $microtime), $tz);
+        return new static(DateTime::createFromFormat('U.u', $microtime, $tz));
     }
 
     public static function fromString(string $dateTimeString):TimePointInterface
