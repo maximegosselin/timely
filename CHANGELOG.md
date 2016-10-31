@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.0.2 (released 2016-10-31)
+### Changed
+
+- Fix DateTime creation in TimePoint::now() 
+
 ## 1.0.1 (released 2016-10-25)
 ### Changed
 
